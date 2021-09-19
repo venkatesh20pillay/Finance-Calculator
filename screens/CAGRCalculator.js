@@ -67,14 +67,23 @@ export default class CAGRCalulator extends React.Component {
         let returnRate = ((Math.pow((finalAmount/principal),(1/n))-1)*10000);
         returnRate = returnRate/100;
         returnRate = returnRate.toFixed(2);
-        const profit = finalAmount - principal;
+        let profit = finalAmount - principal;
+        let prefix = "";
+        if(profit<0) {
+            prefix = "Loss: ";
+            profit = profit * -1;
+        }
+        else {
+            profit = "Profit: ";
+        }
         var myObj = {
             style: "currency",
             currency: "INR"
         }
         const amountInvestedText = this._currency(principal);
         const finalAmountText = this._currency(finalAmount);
-        const profitText =this._currency(profit);
+        let profitText =this._currency(profit);
+        profitText = prefix + profitText;
         this.setState ({
             amountInvested: principal,
             finalAmount: finalAmount,
@@ -191,10 +200,10 @@ export default class CAGRCalulator extends React.Component {
         if(this.state.showResult) {
             return(
                 <View style={this.cardStyle}>
-                    <Text style={this.resultTextStyle}>Final Amount - {this.state.finalAmountText}</Text>
-                    <Text style={this.resultTextStyle}>Total Amount Invested - {this.state.amountInvestedText}</Text>
-                    <Text style={this.resultTextStyle}>Profit - {this.state.profitText}</Text>
-                    <Text style={this.resultTextStyle}>Compound annual growth rate - {this.state.interest}%</Text>
+                    <Text style={this.resultTextStyle}>Final Amount: {this.state.finalAmountText}</Text>
+                    <Text style={this.resultTextStyle}>Total Amount Invested: {this.state.amountInvestedText}</Text>
+                    <Text style={this.resultTextStyle}>{this.state.profitText}</Text>
+                    <Text style={this.resultTextStyle}>Compound annual growth rate: {this.state.interest}%</Text>
                 </View>
             )
         }

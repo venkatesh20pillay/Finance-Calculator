@@ -187,9 +187,9 @@ export default class SipCalculator extends React.Component {
         if(this.state.showResult) {
             return(
                 <View style={this.cardStyle}>
-                    <Text style={this.resultTextStyle}>Final Amount - {this.state.finalAmountText}</Text>
-                    <Text style={this.resultTextStyle}>Total Amount Invested - {this.state.amountInvestedText}</Text>
-                    <Text style={this.resultTextStyle}>Profit - {this.state.profitText}</Text>
+                    <Text style={this.resultTextStyle}>Final Amount: {this.state.finalAmountText}</Text>
+                    <Text style={this.resultTextStyle}>Total Amount Invested: {this.state.amountInvestedText}</Text>
+                    <Text style={this.resultTextStyle}>Profit: {this.state.profitText}</Text>
                 </View>
             )
         }
