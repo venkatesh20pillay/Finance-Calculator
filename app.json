@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "FinanceCalculator",
+    "name": "Finance Calculator",
     "slug": "FinanceCalculator",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#AA8800"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,7 +23,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.venkatesh.financeCalculator",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"

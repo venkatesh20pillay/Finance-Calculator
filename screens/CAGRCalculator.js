@@ -72,10 +72,9 @@ export default class CAGRCalulator extends React.Component {
             style: "currency",
             currency: "INR"
         }
-
-        const amountInvestedText = new Number(principal).toLocaleString("hi-IN", myObj);
-        const finalAmountText = new Number(finalAmount).toLocaleString("hi-IN", myObj);
-        const profitText = new Number(profit).toLocaleString("hi-IN", myObj);
+        const amountInvestedText = this._currency(principal);
+        const finalAmountText = this._currency(finalAmount);
+        const profitText =this._currency(profit);
         this.setState ({
             amountInvested: principal,
             finalAmount: finalAmount,
@@ -92,6 +91,24 @@ export default class CAGRCalulator extends React.Component {
             showResult: false
         })
     }
+    }
+
+    _currency(num) {
+        let currency = num.toString();
+        let temp = "";
+        let count = 0;
+        for(let i = currency.length - 1; i>=0 ; i--) {
+            temp = currency[i] + temp;
+            if(count==2 && count!=currency.length-1) {
+                temp = ',' + temp;
+            }
+            else if (count >=2 && (count%2==0) && count!=currency.length-1) {
+                temp = ',' + temp;
+            }
+            count++;
+        }
+        temp = '₹ ' + temp;
+        return temp;
     }
 
     _notifyMessage(msg) {

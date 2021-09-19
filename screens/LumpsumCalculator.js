@@ -69,9 +69,9 @@ export default class LumpsumCalculator extends React.Component {
                 currency: "INR"
             }
 
-            const amountInvestedText = new Number(principal).toLocaleString("hi-IN", myObj);
-            const finalAmountText = new Number(amount).toLocaleString("hi-IN", myObj);
-            const profitText = new Number(profit).toLocaleString("hi-IN", myObj);
+            const amountInvestedText = this._currency(principal);
+            const finalAmountText = this._currency(amount);
+            const profitText =  this._currency(profit);
 
             this.setState ({
                 amountInvested: principal,
@@ -91,6 +91,24 @@ export default class LumpsumCalculator extends React.Component {
         }
     }
 
+    _currency(num) {
+        let currency = num.toString();
+        let temp = "";
+        let count = 0;
+        for(let i = currency.length - 1; i>=0 ; i--) {
+            temp = currency[i] + temp;
+            if(count==2 && count!=currency.length-1) {
+                temp = ',' + temp;
+            }
+            else if (count >=2 && (count%2==0) && count!=currency.length-1) {
+                temp = ',' + temp;
+            }
+            count++;
+        }
+        temp = '₹ ' + temp;
+        return temp;
+    }
+
     _notifyMessage(msg) {
         if(Platform.OS === 'android') {
             ToastAndroid.show(msg, ToastAndroid.SHORT);
@@ -98,7 +116,7 @@ export default class LumpsumCalculator extends React.Component {
     }
 
     _checkError = () => {
-        if(this.state.monthlyInstallment <= 0) {
+        if(this.state.investment <= 0) {
             this._notifyMessage('Please enter amount');
             return true;
         }
